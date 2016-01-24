@@ -1,7 +1,8 @@
 # need to read headers separately and set them as colnames
-header <- read.table("household_power_consumption.txt", sep = ";",nrows=1)
-householdData <- read.table("household_power_consumption.txt", sep = ";", na.strings = "?", skip=66637,nrows=2880)
-colnames(householdData) <- unlist(header)
+library(data.table)
+header <- fread("household_power_consumption.txt", sep = ";",nrows=0, header=TRUE)
+householdData <- fread("household_power_consumption.txt", sep = ";", header=TRUE, na.strings = "?", skip=66637,nrows=2880)
+setnames(householdData, names(header))
 
 # par bg white sets the background white if you save in png then it is necessary
 par(bg="white")
