@@ -4,7 +4,7 @@ SCC <- readRDS("Source_Classification_Code.rds")
 
 par(bg="white")
 NEIBaltimore <- NEI[NEI$fips=="24510", ]
-meanYearWise <- lapply( split( NEIBaltimore$Emissions, NEIBaltimore$year), mean)
+meanYearWise <- lapply( split( NEIBaltimore$Emissions, NEIBaltimore$year), sum)
 barplot(as.numeric(meanYearWise), names.arg=c(levels(factor(NEIBaltimore$year))), xlab="Years", ylab="Emissions Levels")
 dev.copy(png, file = "plot2.png")
 dev.off()

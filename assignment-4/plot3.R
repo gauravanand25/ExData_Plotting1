@@ -4,6 +4,8 @@ SCC <- readRDS("Source_Classification_Code.rds")
 
 library(ggplot2)
 par(bg="white")
-ggplot(NEI) + geom_bar( aes(type, Emissions, fill = as.factor(year)), position= "dodge", stat="summary", fun.y="mean")
+NEIBaltimore <- NEI[NEI$fips=="24510", ]
+g <- ggplot(NEIBaltimore) + geom_bar( aes(type, Emissions, fill = as.factor(year)), position= "dodge", stat="summary", fun.y="sum")
+print(g)
 dev.copy(png, file = "plot3.png")
 dev.off()
